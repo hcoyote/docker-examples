@@ -114,3 +114,10 @@ When changing cluster sizes from one node count to another, it is recommended th
 COMPOSE_PROFILES=<runningprofile> docker compose rm -v
 docker volume prune 
 ```
+
+# Things this docker-compose doesn't implement
+
+* TLS
+* authorization/ACLs
+
+
