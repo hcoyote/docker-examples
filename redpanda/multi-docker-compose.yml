@@ -269,5 +269,7 @@ services:
       CONNECT_GC_LOG_ENABLED: "false"
       CONNECT_HEAP_OPTS: -Xms512M -Xmx512M
       CONNECT_LOG_LEVEL: info
+    profiles:
+      - connect
 
 
