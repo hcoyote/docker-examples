@@ -43,8 +43,9 @@ down:
 	COMPOSE_FILE=$(COMPOSE_FILE) SEEDS=redpanda-0:33145 LOG_LEVEL=warn COMPOSE_PROFILES=$(COMPOSE_PROFILES) docker compose down
 
 # Target: clean - shutdown nodes and clean up/purge volumes -- WARNING: this is destructive
-clean: COMPOSE_PROFILES=fivenode
+clean: COMPOSE_PROFILES=fivenode,connect
 clean:
-	make -e COMPOSE_PROFILES=fivenode down
+	make -e COMPOSE_PROFILES=fivenode,connect down
+	#make -e COMPOSE_PROFILES=fivenode down
 	docker ps -a --filter name=redpanda --format "{{.Names}}" | xargs docker rm -v
 	COMPOSE_FILE=$(COMPOSE_FILE) SEEDS=redpanda-0:33145 LOG_LEVEL=warn COMPOSE_PROFILES=$(COMPOSE_PROFILES) docker volume prune -f
