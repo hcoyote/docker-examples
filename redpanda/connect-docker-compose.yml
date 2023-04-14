@@ -1,0 +1,34 @@
+---
+version: "3.7"
+name: redpanda-connect
+
+networks:
+  redpanda_network:
+services:
+  redpanda-connect:
+    image: docker.redpanda.com/redpandadata/connectors:latest
+    hostname: redpanda-connect
+    container_name: redpanda-connect
+    networks:
+      - redpanda_network
+    #platform: 'linux/amd64'
+    ports:
+      - "18083:8083"
+    environment:
+      CONNECT_CONFIGURATION: |
+          key.converter=org.apache.kafka.connect.converters.ByteArrayConverter
+          value.converter=org.apache.kafka.connect.converters.ByteArrayConverter
+          group.id=connectors-cluster
+          offset.storage.topic=_internal_connectors_offsets
+          config.storage.topic=_internal_connectors_configs
+          status.storage.topic=_internal_connectors_status
+          config.storage.replication.factor=-1
+          offset.storage.replication.factor=-1
+          status.storage.replication.factor=-1
+          offset.flush.interval.ms=1000
+          producer.linger.ms=50
+          producer.batch.size=131072
+      CONNECT_BOOTSTRAP_SERVERS: ${RP_BROKERS:-redpanda-0:9092}
+      CONNECT_GC_LOG_ENABLED: "false"
+      CONNECT_HEAP_OPTS: -Xms512M -Xmx512M
+      CONNECT_LOG_LEVEL: info
