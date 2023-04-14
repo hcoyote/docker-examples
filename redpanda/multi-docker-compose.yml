@@ -36,7 +36,7 @@ services:
       - --advertise-kafka-addr INSIDE://redpanda-0:29092,OUTSIDE://localhost:10092
       - --advertise-pandaproxy-addr INSIDE://redpanda-0:28082,OUTSIDE://localhost:10082
       - --advertise-rpc-addr redpanda-0:33145
-    image: docker.redpanda.com/vectorized/redpanda:${RP_VERSION:-latest}
+    image: docker.redpanda.com/redpandadata/redpanda:${RP_VERSION:-latest}
     container_name: redpanda-0
     volumes:
       - redpanda-0:/var/lib/redpanda/data
@@ -77,7 +77,7 @@ services:
       - --advertise-kafka-addr INSIDE://redpanda-1:29092,OUTSIDE://localhost:11092
       - --advertise-pandaproxy-addr INSIDE://redpanda-1:28082,OUTSIDE://localhost:11082
       - --advertise-rpc-addr redpanda-1:33145
-    image: docker.redpanda.com/vectorized/redpanda:${RP_VERSION:-latest}
+    image: docker.redpanda.com/redpandadata/redpanda:${RP_VERSION:-latest}
     container_name: redpanda-1
     volumes:
       - redpanda-1:/var/lib/redpanda/data
