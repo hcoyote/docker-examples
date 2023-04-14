@@ -232,7 +232,7 @@ services:
           enabled: true
           clusters:
             - name: local-connect-cluster
-              url: http://connect:8083
+              url: http://redpanda-connect:8083
     ports:
       - 8080:8080
     depends_on:
@@ -240,17 +240,17 @@ services:
       - redpanda-1
       - redpanda-2
 
-  connect:
+  redpanda-connect:
     image: docker.redpanda.com/redpandadata/connectors:latest
-    hostname: connect
-    container_name: connect
+    hostname: redpanda-connect
+    container_name: redpanda-connect
     networks:
       - redpanda_network
     #platform: 'linux/amd64'
     depends_on:
       - console
     ports:
-      - "8083:8083"
+      - "18083:8083"
     environment:
       CONNECT_CONFIGURATION: |
           key.converter=org.apache.kafka.connect.converters.ByteArrayConverter
