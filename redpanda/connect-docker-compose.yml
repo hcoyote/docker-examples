@@ -13,7 +13,10 @@ services:
       - redpanda_network
     #platform: 'linux/amd64'
     ports:
+      # connect api
       - "18083:8083"
+      # prometheus exporter for jmx metrics
+      - "18404:9404" 
     environment:
       CONNECT_CONFIGURATION: |
           key.converter=org.apache.kafka.connect.converters.ByteArrayConverter
