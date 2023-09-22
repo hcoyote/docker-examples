@@ -2,7 +2,7 @@ COMPOSE_FILE:=multi-docker-compose.yml
 COMPOSE_PROFILES:=nonode
 ARGS?="-d"
 UPDOWN?="up"
-RP_VERSION?="latest"
+RP_VERSION?="v23.2.8"
 
 
 default:
@@ -36,11 +36,17 @@ connect:
 status:
 	@docker ps
 
+shell:
+	@docker exec -it redpanda-0 bash
+
 up: 
 	RP_VERSION=$(RP_VERSION) COMPOSE_FILE=$(COMPOSE_FILE) SEEDS=redpanda-0:33145 LOG_LEVEL=warn COMPOSE_PROFILES=$(COMPOSE_PROFILES) docker compose up $(ARGS)
 
 down:
 	COMPOSE_FILE=$(COMPOSE_FILE) SEEDS=redpanda-0:33145 LOG_LEVEL=warn COMPOSE_PROFILES=$(COMPOSE_PROFILES) docker compose down
+
+clean-images:
+	docker image rm docker.redpanda.com/redpandadata/redpanda
 
 # Target: clean - shutdown nodes and clean up/purge volumes -- WARNING: this is destructive
 clean: COMPOSE_PROFILES=fivenode,connect
