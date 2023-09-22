@@ -117,7 +117,7 @@ services:
       - --advertise-kafka-addr INSIDE://redpanda-2:29092,OUTSIDE://localhost:12092
       - --advertise-pandaproxy-addr INSIDE://redpanda-2:28082,OUTSIDE://localhost:12082
       - --advertise-rpc-addr redpanda-2:33145
-    image: docker.redpanda.com/vectorized/redpanda:${RP_VERSION:-latest}
+    image: docker.redpanda.com/redpandadata/redpanda:${RP_VERSION:-latest}
     container_name: redpanda-2
     volumes:
       - redpanda-2:/var/lib/redpanda/data
@@ -157,7 +157,7 @@ services:
       - --advertise-kafka-addr INSIDE://redpanda-3:29092,OUTSIDE://localhost:13092
       - --advertise-pandaproxy-addr INSIDE://redpanda-3:28082,OUTSIDE://localhost:13082
       - --advertise-rpc-addr redpanda-3:33145
-    image: docker.redpanda.com/vectorized/redpanda:${RP_VERSION:-latest}
+    image: docker.redpanda.com/redpandadata/redpanda:${RP_VERSION:-latest}
     container_name: redpanda-3
     volumes:
       - redpanda-3:/var/lib/redpanda/data
@@ -196,7 +196,7 @@ services:
       - --advertise-kafka-addr INSIDE://redpanda-4:29092,OUTSIDE://localhost:12092
       - --advertise-pandaproxy-addr INSIDE://redpanda-4:28082,OUTSIDE://localhost:12082
       - --advertise-rpc-addr redpanda-4:33145
-    image: docker.redpanda.com/vectorized/redpanda:${RP_VERSION:-latest}
+    image: docker.redpanda.com/redpandadata/redpanda:${RP_VERSION:-latest}
     container_name: redpanda-4
     volumes:
       - redpanda-4:/var/lib/redpanda/data
@@ -211,7 +211,7 @@ services:
       - fivenode
   console:
     container_name: redpanda-console
-    image: docker.redpanda.com/vectorized/console:${RP_CONSOLE_VERSION:-latest}
+    image: docker.redpanda.com/redpandadata/console:${RP_CONSOLE_VERSION:-latest}
     networks:
       - redpanda_network
     entrypoint: /bin/sh
