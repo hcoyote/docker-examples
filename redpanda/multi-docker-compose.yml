@@ -235,10 +235,10 @@ services:
               url: http://redpanda-connect:8083
     ports:
       - 8080:8080
-    depends_on:
-      - redpanda-0
-      - redpanda-1
-      - redpanda-2
+#    depends_on:
+#      - redpanda-0
+#      - redpanda-1
+#      - redpanda-2
 
   redpanda-connect:
     image: docker.redpanda.com/redpandadata/connectors:latest
