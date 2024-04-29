@@ -55,10 +55,10 @@ SEEDS=redpanda-0 CONSOLE_PROFILES=onenode docker compose up
 CONSOLE_PROFILES=threenode docker compose up
 ```
 
-## Start a Three node instance with Console using Redpanda 22.3.13
+## Start a Three node instance with Console using Redpanda 23.3.12
 
 ```
-RP_VERSION=v22.3.13 CONSOLE_PROFILES=threenode docker compose up
+RP_VERSION=v23.3.12 CONSOLE_PROFILES=threenode docker compose up
 ```
 
 
