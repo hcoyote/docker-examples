@@ -46,13 +46,13 @@ See the [Redpanda Console container details on Docker Hub](https://hub.docker.co
 ## Start a Single Node instance with Console
 
 ```
-SEEDS=redpanda-0 CONSOLE_PROFILES=onenode docker compose up
+SEEDS=redpanda-0 COMPOSE_PROFILES=onenode docker compose up
 ```
 
 ## Start a Three node instance with Console
 
 ```
-CONSOLE_PROFILES=threenode docker compose up
+COMPOSE_PROFILES=threenode docker compose up
 ```
 
 ## Start a Three node instance with Console using Redpanda 23.3.12
