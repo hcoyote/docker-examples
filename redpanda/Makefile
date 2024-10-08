@@ -2,7 +2,7 @@ COMPOSE_FILE:=multi-docker-compose.yml
 COMPOSE_PROFILES:=nonode
 ARGS?="-d"
 UPDOWN?=up
-RP_VERSION?="v23.3.12"
+RP_VERSION?="v24.2.4"
 
 
 default:
@@ -53,6 +53,6 @@ clean: COMPOSE_PROFILES=fivenode,connect
 clean:
 	make -e COMPOSE_PROFILES=fivenode,connect down
 	#make -e COMPOSE_PROFILES=fivenode down
-	docker ps -a --filter name=redpanda --format "{{.Names}}" | xargs docker rm -v
+	docker ps -a --filter name=redpanda --format "{{.Names}}" | grep -v k8s_ | xargs docker rm -v
 	COMPOSE_FILE=$(COMPOSE_FILE) SEEDS=redpanda-0:33145 LOG_LEVEL=warn COMPOSE_PROFILES=$(COMPOSE_PROFILES) docker volume prune -f
-	docker volume ls --filter name=redpanda --format "{{.Name}}"| xargs docker volume rm -f
+	docker volume ls --filter name=redpanda --format "{{.Name}}"| grep -v k8s_ | xargs docker volume rm -f
