@@ -2,7 +2,7 @@ COMPOSE_FILE:=multi-docker-compose.yml
 COMPOSE_PROFILES:=nonode
 ARGS?="-d"
 UPDOWN?=up
-RP_VERSION?="v24.2.4"
+RP_VERSION?="v24.2.10"
 
 
 default:
@@ -38,6 +38,12 @@ status:
 
 shell:
 	@docker exec -it redpanda-0 bash
+
+privmetrics:
+	@curl -s http://localhost:10644/metrics
+
+pubmetrics:
+	@curl -s http://localhost:10644/public_metrics
 
 up: 
 	RP_VERSION=$(RP_VERSION) COMPOSE_FILE=$(COMPOSE_FILE) SEEDS=redpanda-0:33145 LOG_LEVEL=info COMPOSE_PROFILES=$(COMPOSE_PROFILES) docker compose up $(ARGS)
