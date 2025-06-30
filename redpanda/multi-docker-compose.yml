@@ -18,7 +18,9 @@ services:
       - --overprovisioned
       - --reserve-memory 0M
       - --set redpanda.auto_create_topics_enabled=false
+      - --set redpanda.enable_rack_awareness=true
       - --set redpanda.empty_seed_starts_cluster=false
+      - --set redpanda.rack=rack0
       - --kafka-addr INSIDE://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
       - --pandaproxy-addr INSIDE://0.0.0.0:28082,OUTSIDE://0.0.0.0:8082
       - --schema-registry-addr INSIDE://0.0.0.0:8081,OUTSIDE://0.0.0.0:18081
@@ -60,6 +62,7 @@ services:
       - --reserve-memory 0M
       - --set redpanda.auto_create_topics_enabled=false
       - --set redpanda.empty_seed_starts_cluster=false
+      - --set redpanda.rack=rack1
       - --kafka-addr INSIDE://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
       - --pandaproxy-addr INSIDE://0.0.0.0:28082,OUTSIDE://0.0.0.0:8082
       - --schema-registry-addr INSIDE://0.0.0.0:8081,OUTSIDE://0.0.0.0:18081
@@ -100,6 +103,7 @@ services:
       - --reserve-memory 0M
       - --set redpanda.auto_create_topics_enabled=false
       - --set redpanda.empty_seed_starts_cluster=false
+      - --set redpanda.rack=rack2
       - --kafka-addr INSIDE://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
       - --pandaproxy-addr INSIDE://0.0.0.0:28082,OUTSIDE://0.0.0.0:8082
       - --schema-registry-addr INSIDE://0.0.0.0:8081,OUTSIDE://0.0.0.0:18081
@@ -220,18 +224,18 @@ services:
       CONSOLE_CONFIG_FILE: |
         kafka:
           brokers: ["redpanda-0:29092", "redpanda-1:29092", "redpanda-2:29092"]
-          schemaRegistry:
-            enabled: true
-            urls: ["http://redpanda-0:8081"]
+        schemaRegistry:
+          enabled: true
+          urls: ["http://redpanda-0:8081"]
         redpanda:
           adminApi:
             enabled: true
             urls: ["http://redpanda-0:9644"]
-        connect:
-          enabled: true
-          clusters:
-            - name: local-connect-cluster
-              url: http://redpanda-connect:8083
+        #connect:
+          #enabled: true
+          #clusters:
+            #- name: local-connect-cluster
+              #url: http://redpanda-connect:8083
     ports:
       - 8080:8080
 #    depends_on:
