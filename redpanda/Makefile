@@ -2,7 +2,7 @@ COMPOSE_FILE:=multi-docker-compose.yml
 COMPOSE_PROFILES:=nonode
 ARGS?="-d"
 UPDOWN?=up
-RP_VERSION?="v24.2.10"
+RP_VERSION?="v25.1.5"
 
 
 default:
